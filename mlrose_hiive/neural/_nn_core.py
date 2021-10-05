@@ -27,7 +27,7 @@ class _NNCore(_NNBase):
     def __init__(self, hidden_nodes=None, activation='relu', algorithm='random_hill_climb', max_iters=100, bias=True,
                  is_classifier=True, learning_rate=0.1, early_stopping=False, clip_max=1e+10, restarts=0,
                  schedule=GeomDecay(), pop_size=200, mutation_prob=0.1, max_attempts=10, random_state=None,
-                 curve=False):
+                 curve=False, pop_breed_percent=0.75, elite_dreg_ratio=0.99, minimum_elites=0, minimum_dregs=0):
 
         super().__init__()
         if hidden_nodes is None:
@@ -54,6 +54,10 @@ class _NNCore(_NNBase):
         self.max_attempts = max_attempts
         self.random_state = random_state
         self.curve = curve
+        self.pop_breed_percent = pop_breed_percent
+        self.elite_dreg_ratio = elite_dreg_ratio
+        self.minimum_elites = minimum_elites
+        self.minimum_dregs = minimum_dregs
 
         self.node_list = []
         self.fitted_weights = []
@@ -193,7 +197,12 @@ class _NNCore(_NNBase):
                 max_attempts=self.max_attempts if self.early_stopping else
                 self.max_iters,
                 max_iters=self.max_iters,
-                curve=self.curve)
+                curve=self.curve,
+                pop_breed_percent=self.pop_breed_percent,
+                elite_dreg_ratio=self.elite_dreg_ratio,
+                minimum_elites=self.minimum_elites,
+                minimum_dregs=self.minimum_dregs,
+            )
         else:
             fitted_weights, loss, _ = genetic_alg(
                 problem,
@@ -201,7 +210,12 @@ class _NNCore(_NNBase):
                 max_attempts=self.max_attempts if self.early_stopping else
                 self.max_iters,
                 max_iters=self.max_iters,
-                curve=self.curve)
+                curve=self.curve,
+                pop_breed_percent=self.pop_breed_percent,
+                elite_dreg_ratio=self.elite_dreg_ratio,
+                minimum_elites=self.minimum_elites,
+                minimum_dregs=self.minimum_dregs,
+            )
         return fitness_curve, fitted_weights, loss
 
     def _run_with_sa(self, init_weights, num_nodes, problem):
