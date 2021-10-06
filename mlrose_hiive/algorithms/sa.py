@@ -143,7 +143,7 @@ def simulated_annealing(problem, schedule=GeomDecay(), max_attempts=10,
                                                         user_data=callback_user_info)
 
         # break out if requested
-        if not continue_iterating:
+        if not continue_iterating or problem.can_stop():
             break
 
     best_fitness = problem.get_maximize()*problem.get_fitness()
