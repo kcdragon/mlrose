@@ -26,7 +26,7 @@ Example usage:
 class GARunner(_RunnerBase):
 
     def __init__(self, problem, experiment_name, seed, iteration_list, population_sizes, mutation_rates,
-                 pop_breed_percents=[],
+                 pop_breed_percents=[0.75],
                  hamming_factors=None, hamming_factor_decays=None, max_attempts=500, generate_curves=True, **kwargs):
         super().__init__(problem=problem, experiment_name=experiment_name, seed=seed, iteration_list=iteration_list,
                          max_attempts=max_attempts, generate_curves=generate_curves,
