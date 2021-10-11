@@ -40,7 +40,7 @@ class NNGSRunner(_NNRunnerBase):
 
     def __init__(self, x_train, y_train, x_test, y_test, experiment_name, seed, iteration_list, algorithm,
                  grid_search_parameters, grid_search_scorer_method=skmt.balanced_accuracy_score,
-                 bias=True, early_stopping=True, clip_max=1e+10, activation=None,
+                 bias=True, early_stopping=True, clip_max=1e+10, activation=relu,
                  max_attempts=500, n_jobs=1, cv=5, generate_curves=True, output_directory=None,
                  **kwargs):
 
@@ -70,6 +70,7 @@ class NNGSRunner(_NNRunnerBase):
         # build the classifier
         self.classifier = NNClassifier(runner=self,
                                        algorithm=algorithm,
+                                       activation=activation,
                                        max_attempts=max_attempts,
                                        clip_max=clip_max,
                                        early_stopping=early_stopping,
