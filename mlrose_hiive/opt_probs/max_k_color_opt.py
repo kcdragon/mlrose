@@ -17,6 +17,8 @@ class MaxKColorOpt(DiscreteOpt):
     def __init__(self, edges=None, length=None, fitness_fn=None, maximize=False,
                  max_colors=None, crossover=None, mutator=None, source_graph=None):
 
+        self.edges = edges
+
         if (fitness_fn is None) and (edges is None):
             raise Exception("fitness_fn or edges must be specified.")
 
