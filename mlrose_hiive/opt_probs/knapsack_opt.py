@@ -14,6 +14,8 @@ class KnapsackOpt(DiscreteOpt):
                  weights=None, values=None, max_weight_pct=0.35,
                  crossover=None, mutator=None,
                  multiply_by_max_item_count=False):
+        self.weights = weights
+        self.values = values
 
         if (fitness_fn is None) and (weights is None and values is None):
             raise Exception("""fitness_fn or both weights and"""
