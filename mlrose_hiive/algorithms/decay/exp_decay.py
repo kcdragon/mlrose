@@ -91,7 +91,7 @@ class ExpDecay:
             info[f'{prefix}current_value'] = self.evaluate(t)
         return info
 
-    def set_params(self, params):
+    def set_params(self, **params):
         self.init_temp = params['init_temp']
         self.exp_const = params['exp_const']
         self.min_temp = parms['min_temp']
