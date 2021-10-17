@@ -92,9 +92,14 @@ class ExpDecay:
         return info
 
     def set_params(self, **params):
-        self.init_temp = params['init_temp']
-        self.exp_const = params['exp_const']
-        self.min_temp = parms['min_temp']
+        if 'init_temp' in params:
+            self.init_temp = params['init_temp']
+
+        if 'exp_const' in params:
+            self.exp_const = params['exp_const']
+
+        if 'min_temp' in params:
+            self.min_temp = parms['min_temp']
 
     def __str__(self):
         return str(self.init_temp)
